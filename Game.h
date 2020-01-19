@@ -1,6 +1,6 @@
 //
 // Created by maximilian on 18.01.20.
-//
+// The Game class handles the main loop and switches between GameStates
 
 #ifndef TEST_GAME_H
 #define TEST_GAME_H
@@ -13,6 +13,7 @@
 class Game {
 public:
     Game();
+    ~Game();
 
     enum class gameStates { MAINMENU, PLAY, CREATE};
 
@@ -20,6 +21,7 @@ public:
     void ChangeState(gameStates newState);
 
     sf::RenderWindow window;
+    sf::Font font;
 
 private:
     std::unique_ptr<GameState> currentState;

@@ -8,12 +8,23 @@
 
 Game::Game() {
     window.create(sf::VideoMode(1200, 720), "Game");
+
+    if (!font.loadFromFile("font.ttf")) {
+        printf("Font not found!\n");
+    } else {
+        font.loadFromFile("font.ttf");
+    }
+}
+
+Game::~Game() {
+    window.close();
 }
 
 void Game::Run() {
 
     ChangeState(gameStates::MAINMENU);
 
+    //Main loop
     while (window.isOpen()) {
         currentState->HandleEvents(*this);
         currentState->Update(*this);
@@ -24,10 +35,10 @@ void Game::Run() {
 void Game::ChangeState(gameStates newState) {
     switch (newState) {
         case gameStates::MAINMENU:
-            currentState = std::move(std::unique_ptr<MainMenuState>(new MainMenuState));
+            currentState = std::move(std::make_unique<MainMenuState>());
             break;
         case gameStates::PLAY:
-            currentState = std::move(std::unique_ptr<PlayState>(new PlayState));
+            currentState = std::move(std::make_unique<PlayState>());
             break;
         case gameStates::CREATE:
             //currentState = std::move(std::unique_ptr<MainMenuState>(new MainMenuState));

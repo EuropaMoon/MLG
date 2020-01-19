@@ -1,11 +1,11 @@
 //
 // Created by maximilian on 18.01.20.
-//
+// Handles the Play state
 
 #ifndef TEST_PLAYSTATE_H
 #define TEST_PLAYSTATE_H
 
-#include <SFML/Graphics/CircleShape.hpp>
+#include <SFML/Graphics.hpp>
 #include "GameState.h"
 
 class PlayState : public GameState {
@@ -19,6 +19,7 @@ public:
 
 private:
     sf::CircleShape circle;
+    sf::Text text;
 };
 
 #endif //TEST_PLAYSTATE_H
